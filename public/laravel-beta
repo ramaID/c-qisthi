@@ -11,7 +11,7 @@ docker run --rm \
     --pull=always \
     -v "$(pwd)":/opt \
     -w /opt \
-    ramageek/bcrud:8.2-cli \
+    ramageek/bcrud:beta-8.2-cli \
     bash -c "composer create-project laravel/laravel laravel-app && cd laravel-app && chown -R webuser:webgroup /var/www/html/storage /var/www/html/bootstrap/cache && composer install"
 
 cd laravel-app
@@ -20,7 +20,7 @@ cat <<EOT >> docker-compose.yml
 version: '3.7'
 services:
   php:
-    image: ramageek/bcrud:8.2-fpm-nginx-npm
+    image: ramageek/bcrud:beta-8.2-fpm-nginx-npm
     volumes:
       - .:/var/www/html/
     ports:
