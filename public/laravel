@@ -12,7 +12,7 @@ docker run --rm \
     -v "$(pwd)":/opt \
     -w /opt \
     ramageek/bcrud:8.2-cli \
-    bash -c "composer create-project laravel/laravel laravel-app && cd laravel-app && chown -R webuser:webgroup /var/www/html/storage /var/www/html/bootstrap/cache && composer install"
+    bash -c "composer create-project laravel/laravel laravel-app && cd laravel-app && composer install"
 
 cd laravel-app
 
