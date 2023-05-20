@@ -17,6 +17,9 @@ export default function UserAdmin() {
       <h1 className="my-6 mb-2 border-b-2 text-center text-3xl">Admin</h1>
       <div className="grid grid-cols-4 gap-6">
         <nav className="col-span-4 md:col-span-1">
+          <Link to={"/users/admin"} className="text-blue-600 underline">
+            Index Admin Page
+          </Link>
           <ul>
             {response.data.map((user) => (
               <li key={user.name}>
