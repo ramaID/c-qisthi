@@ -13,18 +13,24 @@ export async function loader({ context }: LoaderArgs) {
 export default function Users() {
   const { response } = useLoaderData<typeof loader>();
   return (
-    <main>
-      <h1>Users</h1>
-      <Link to="admin" className="text-red-600 underline">
-        Admin
-      </Link>
-      {response.data.map((user) => (
-        <li key={user.name}>
-          <Link to={user.name} className="text-blue-600 underline">
-            {user.name}
+    <div className="mx-auto max-w-4xl">
+      <h1 className="my-6 mb-2 border-b-2 text-center text-3xl">Users</h1>
+      <div className="grid grid-cols-4 gap-6">
+        <nav className="col-span-4 md:col-span-1">
+          <Link to={"/users/admin"} className="text-blue-600 underline">
+            Admin Page
           </Link>
-        </li>
-      ))}
-    </main>
+          <ul>
+            {response.data.map((user) => (
+              <li key={user.name}>
+                <Link to={user.name} className="text-blue-600 underline">
+                  {user.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </div>
   );
 }

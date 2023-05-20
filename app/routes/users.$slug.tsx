@@ -13,14 +13,34 @@ export async function loader({ params, context }: LoaderArgs) {
   return json({ response });
 }
 
-export default function Users() {
+export default function UsersSlug() {
   const { response } = useLoaderData<typeof loader>();
   return (
-    <main>
-      <h1>Users</h1>
-      <h1 className="my-6 border-b-2 text-center text-3xl">
-        {response.data.name}
-      </h1>
-    </main>
+    <div className="overflow-hidden bg-white shadow sm:rounded-lg">
+      <div className="px-4 py-5 sm:px-6">
+        <h2 className="text-lg font-medium leading-6 text-gray-900">
+          User Info
+        </h2>
+        <p className="mt-1 max-w-2xl text-sm text-gray-500">
+          Some info about the user.
+        </p>
+      </div>
+      <div className="border-t border-gray-200">
+        <dl>
+          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">Username</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              {response.data.name}
+            </dd>
+          </div>
+          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">Email</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              {response.data.email}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
   );
 }
