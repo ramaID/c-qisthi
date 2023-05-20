@@ -4,13 +4,11 @@ import { useLoaderData } from "@remix-run/react";
 import type { AllProps, UserResource } from "~/types/generated";
 import invariant from "tiny-invariant";
 
-const API_ENDPOINT = "http://localhost:8000/api";
-
-export async function loader({ params }: LoaderArgs) {
+export async function loader({ params, context }: LoaderArgs) {
   invariant(params.slug, `params.slug is required`);
-  const response = (await fetch(`${API_ENDPOINT}/user/${params.slug}`).then(
-    (response) => response.json()
-  )) as AllProps<UserResource>;
+  const response = (await fetch(
+    `${context.API_ENDPOINT}/user/${params.slug}`
+  ).then((response) => response.json())) as AllProps<UserResource>;
   invariant(response, `User not found: ${params.slug}`);
   return json({ response });
 }

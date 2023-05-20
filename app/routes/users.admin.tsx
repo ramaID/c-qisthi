@@ -1,12 +1,11 @@
+import type { LoaderArgs } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import type { AllProps, UserCollection } from "~/types/generated";
 
-const API_ENDPOINT = "http://localhost:8000/api";
-
-export async function loader() {
-  const response = (await fetch(`${API_ENDPOINT}/users`).then((response) =>
-    response.json()
+export async function loader({ context }: LoaderArgs) {
+  const response = (await fetch(`${context.API_ENDPOINT}/users`).then(
+    (response) => response.json()
   )) as AllProps<UserCollection>;
   return json({ response });
 }
@@ -20,7 +19,7 @@ export default function UserAdmin() {
         <nav className="col-span-4 md:col-span-1">
           <ul>
             {response.data.map((user) => (
-              <li key={user.id}>
+              <li key={user.name}>
                 <Link to={user.name} className="text-blue-600 underline">
                   {user.name}
                 </Link>
