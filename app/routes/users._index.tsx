@@ -4,7 +4,7 @@ import { Link, useLoaderData } from "@remix-run/react";
 import type { AllProps, UserCollection } from "~/types/generated";
 
 export async function loader({ context }: LoaderArgs) {
-  const response = (await fetch(`${context.API_ENDPOINT}/users`).then(
+  const response = (await fetch(`${context.API_ENDPOINT}/v1/users`).then(
     (response) => response.json()
   )) as AllProps<UserCollection>;
   return json({ response });
@@ -22,9 +22,12 @@ export default function Users() {
           </Link>
           <ul>
             {response.data.map((user) => (
-              <li key={user.name}>
-                <Link to={user.name} className="text-blue-600 underline">
-                  {user.name}
+              <li key={user.id}>
+                <Link
+                  to={user.attributes.name}
+                  className="text-blue-600 underline"
+                >
+                  {user.attributes.name}
                 </Link>
               </li>
             ))}
