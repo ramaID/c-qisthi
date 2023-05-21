@@ -4,7 +4,6 @@ import {
   ArrowLeftOnRectangleIcon,
   Bars3BottomLeftIcon,
   BellIcon,
-  BriefcaseIcon,
   CogIcon,
   HomeIcon,
   QuestionMarkCircleIcon,
@@ -17,9 +16,18 @@ import { NavLink, Outlet } from "@remix-run/react";
 
 const navigation = [
   { name: "Home", href: "/admin", icon: HomeIcon, current: false },
-  { name: "Users", href: "/admin/users", icon: UserGroupIcon, current: false },
-  { name: "Jobs", href: "/admin/jobs", icon: BriefcaseIcon, current: false },
-  { name: "Team", href: "/admin/team", icon: UsersIcon, current: false },
+  {
+    name: "Users Table",
+    href: "/admin/users",
+    icon: UserGroupIcon,
+    current: false,
+  },
+  {
+    name: "Users DataTable",
+    href: "/admin/users-datatable",
+    icon: UsersIcon,
+    current: false,
+  },
   { name: "Settings", href: "/admin/settings", icon: CogIcon, current: false },
 ];
 const secondaryNavigation = [

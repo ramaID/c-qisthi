@@ -4,7 +4,7 @@ import { Link, useLoaderData } from "@remix-run/react";
 import type { AllProps, UserCollection } from "~/types/generated";
 
 export async function loader({ context }: LoaderArgs) {
-  const response = (await fetch(`${context.API_ENDPOINT}/v1/users`).then(
+  const response = (await fetch(`http://localhost:8000/api/v1/users`).then(
     (response) => response.json()
   )) as AllProps<UserCollection>;
   return json({ response });
