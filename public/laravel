@@ -9,10 +9,11 @@ fi
 
 docker run --rm \
     --pull=always \
-    -v "$(pwd)":/var/www \
-    ramageek/bcrud:8.2-laravel
+    -v "$(pwd)":/opt \
+    -w /opt \
+    ramageek/bcrud:8.2-cli \
+    bash -c "composer create-project laravel/laravel laravel-app"
 
-mv html laravel-app
 cd laravel-app
 
 cat <<EOT >> docker-compose.yml
