@@ -9,26 +9,30 @@ fi
 
 docker run --rm \
     --pull=always \
-    -v "$(pwd)":/opt \
-    -w /opt \
-    ramageek/bcrud:8.2-cli \
-    bash -c "composer create-project laravel/laravel laravel-app && cd laravel-app && composer install"
+    -v "$(pwd)":/var/www \
+    ramageek/bcrud:8.2-laravel
 
+mv html laravel-app
 cd laravel-app
 
 cat <<EOT >> docker-compose.yml
 version: '3.7'
 services:
   php:
-    image: ramageek/bcrud:8.2-fpm-nginx-npm
-    container_name: laravel-app_php
+    image: ramageek/bcrud:beta-8.2-laravel
     volumes:
       - .:/var/www/html/
     ports:
       - "8000:80"
+    # https://hub.docker.com/r/shinsenter/laravel
     environment:
-      SSL_MODE: "off"
-      AUTORUN_ENABLED: false
+      LARAVEL_AUTO_OPTIMIZE: false
+      LARAVEL_LINK_STORAGE: false
+      LARAVEL_AUTO_MIGRATION: false
+      LARAVEL_QUEUE_ENABLED: false
+      LARAVEL_QUEUE_OPTIONS: false
+      LARAVEL_SCHEDULE_ENABLED: false
+      LARAVEL_SCHEDULE_OPTIONS: false
 EOT
 
 CYAN='\033[0;36m'
