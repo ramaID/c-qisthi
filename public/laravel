@@ -20,7 +20,7 @@ cat <<EOT >> docker-compose.yml
 version: '3.7'
 services:
   php:
-    image: ramageek/bcrud:beta-8.2-laravel
+    image: ramageek/bcrud:8.2-laravel
     volumes:
       - .:/var/www/html/
     ports:
