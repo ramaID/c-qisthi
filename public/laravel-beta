@@ -25,15 +25,6 @@ services:
       - .:/var/www/html/
     ports:
       - "8000:80"
-    # https://hub.docker.com/r/shinsenter/laravel
-    environment:
-      LARAVEL_AUTO_OPTIMIZE: false
-      LARAVEL_LINK_STORAGE: false
-      LARAVEL_AUTO_MIGRATION: false
-      LARAVEL_QUEUE_ENABLED: false
-      # LARAVEL_QUEUE_OPTIONS: ''
-      LARAVEL_SCHEDULE_ENABLED: false
-      # LARAVEL_SCHEDULE_OPTIONS: ''
 EOT
 
 CYAN='\033[0;36m'
